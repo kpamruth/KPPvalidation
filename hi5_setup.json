@@ -1,6 +1,6 @@
 {
     "bin": [
-        "SCELNX_64_5.03.1100"
+        "SCELNX_64_5.03.110000"
     ],
     "havoc_dependencies": [
         "python-pip",
