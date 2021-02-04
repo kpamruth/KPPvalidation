@@ -1,0 +1,74 @@
+{
+    "bin": [
+        "SCELNX_64_5.03.1100"
+    ],
+    "havoc_dependencies": [
+        "python-pip",
+        "acpica-tools",
+        "patch",
+        "lsiutil",
+        "fb-gcc",
+        "sshpass",
+        "switchtec-user",
+        "tpm2-abrmd",
+        "tpm2-tools",
+        "pciutils",
+        "sdparm",
+        "fb-gcc-5-glibc",
+        "file",
+        "hdparm",
+        "fb-platform007-python3-runtime"
+    ],
+    "autoval_rpms": [
+        "fb-havoc-autoval"
+    ],
+    "test_tools": [
+        "fbjbod",
+        "hdparm",
+        "sdparm",
+        "iperf3",
+        "smartmontools",
+        "fb-FioSynthFlash",
+        "nvme-cli",
+        "fio",
+        "fb-stressapptest",
+        "iperf",
+        "mft",
+        "parted",
+        "xfsprogs",
+        "util-linux"
+    ],
+    "rpm_dependencies": [
+        "numactl",
+        "numactl-libs",
+        "libpmemblk",
+        "libpmem",
+        "libicu",
+        "msr-tools",
+        "audit-libs",
+        "coreutils",
+        "audit-libs",
+        "libcap-ng",
+        "ncurses-libs",
+        "libselinux",
+        "ncurses-libs",
+        "zlib",
+        "libaio-devel",
+        "glibc-devel",
+        "numactl-devel",
+        "rdma-core-devel",
+        "librbd1-devel",
+        "zlib-devel",
+        "libpmemblk-devel",
+        "file-libs"
+    ],
+    "pip_packages": [
+        "paramiko",
+        "requests",
+        "pip"
+    ],
+    "havoc_env": [
+        "FAVA_AUTOTEST_LOCAL=/usr/facebook/havoc/autotest/client/autotest-local",
+        "HAVOC_SITE_SETTINGS=site_settings_fava_lab.json"
+    ]
+}
