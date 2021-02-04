@@ -28,3 +28,47 @@
         "HAVOC_SITE_SETTINGS=site_settings_fava_lab.json"
     ]
 }
+otal 4692
+-rw-r--r--. 1 jenkins jenkins 4751360 Feb  4 14:45 FIO.tar
+-rw-r--r--. 1 jenkins jenkins    1549 Feb  4 15:32 hi5_setup.json
+-rw-r--r--. 1 jenkins jenkins      15 Feb  4 14:45 README.md
+-rw-r--r--. 1 jenkins jenkins   17345 Feb  4 14:45 TP_sanitytest.docx
+-rw-r--r--. 1 jenkins jenkins   23184 Feb  4 14:45 UxT_sanitytest_Yv2_stall.docx
+You have mail in /var/spool/mail/facebook
+[facebook@facebookwiki copy_binary]$ ll
+total 4692
+-rw-r--r--. 1 jenkins jenkins 4751360 Feb  4 14:45 FIO.tar
+-rw-r--r--. 1 jenkins jenkins    1549 Feb  4 15:32 hi5_setup.json
+-rw-r--r--. 1 jenkins jenkins      15 Feb  4 14:45 README.md
+-rw-r--r--. 1 jenkins jenkins   17345 Feb  4 14:45 TP_sanitytest.docx
+-rw-r--r--. 1 jenkins jenkins   23184 Feb  4 14:45 UxT_sanitytest_Yv2_stall.docx
+[facebook@facebookwiki copy_binary]$ ll
+total 4692
+-rw-r--r--. 1 jenkins jenkins 4751360 Feb  4 14:45 FIO.tar
+-rw-r--r--. 1 jenkins jenkins    1549 Feb  4 15:32 hi5_setup.json
+-rw-r--r--. 1 jenkins jenkins      15 Feb  4 14:45 README.md
+-rw-r--r--. 1 jenkins jenkins   17345 Feb  4 14:45 TP_sanitytest.docx
+-rw-r--r--. 1 jenkins jenkins   23184 Feb  4 14:45 UxT_sanitytest_Yv2_stall.docx
+[facebook@facebookwiki copy_binary]$ ll
+total 4692
+-rw-r--r--. 1 jenkins jenkins 4751360 Feb  4 14:45 FIO.tar
+-rw-r--r--. 1 jenkins jenkins    1551 Feb  4 15:55 hi5_setup.json
+-rw-r--r--. 1 jenkins jenkins      15 Feb  4 14:45 README.md
+-rw-r--r--. 1 jenkins jenkins   17345 Feb  4 14:45 TP_sanitytest.docx
+-rw-r--r--. 1 jenkins jenkins   23184 Feb  4 14:45 UxT_sanitytest_Yv2_stall.docx
+You have mail in /var/spool/mail/facebook
+[facebook@facebookwiki copy_binary]$ ll
+total 4692
+-rw-r--r--. 1 jenkins jenkins 4751360 Feb  4 14:45 FIO.tar
+-rw-r--r--. 1 jenkins jenkins    1551 Feb  4 15:55 hi5_setup.json
+-rw-r--r--. 1 jenkins jenkins      15 Feb  4 14:45 README.md
+-rw-r--r--. 1 jenkins jenkins   17345 Feb  4 14:45 TP_sanitytest.docx
+-rw-r--r--. 1 jenkins jenkins   23184 Feb  4 14:45 UxT_sanitytest_Yv2_stall.docx
+[facebook@facebookwiki copy_binary]$ ll
+total 4692
+-rw-r--r--. 1 jenkins jenkins 4751360 Feb  4 14:45 FIO.tar
+-rw-r--r--. 1 jenkins jenkins     645 Feb  4 16:00 hi5_setup.json
+-rw-r--r--. 1 jenkins jenkins      15 Feb  4 14:45 README.md
+-rw-r--r--. 1 jenkins jenkins   17345 Feb  4 14:45 TP_sanitytest.docx
+-rw-r--r--. 1 jenkins jenkins   23184 Feb  4 14:45 UxT_sanitytest_Yv2_stall.docx
+You have mail in /var/spool/mail/facebook
