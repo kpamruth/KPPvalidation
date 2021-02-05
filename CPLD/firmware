@@ -1,0 +1,112 @@
+# Copyright (c) 2016-present, Facebook, Inc.
+# All rights reserved.
+#
+
+from __future__ import absolute_import
+from __future__ import division
+from __future__ import print_function
+from __future__ import unicode_literals
+import os
+import stat
+import sys
+import socket
+import datetime
+import time
+import re
+import json
+import io
+import csv
+import random
+import tarfile
+import oyaml as yaml
+
+from collections import defaultdict, OrderedDict
+from pathlib import Path
+from subprocess import Popen, check_call, PIPE, CalledProcessError
+from math import ceil
+from datetime import timezone
+
+from six.moves import range
+from six.moves import zip
+from itertools import zip_longest
+
+from flask import request, redirect, url_for, flash, jsonify, abort
+from flask import make_response, send_from_directory, send_file
+from flask_wtf import Form
+from flask_wtf.file import FileField, FileAllowed, FileRequired
+from wtforms.fields import StringField, SubmitField, PasswordField, SelectField
+from wtforms.fields import BooleanField, IntegerField, TextAreaField, FieldList
+from wtforms.fields import FormField, HiddenField, DateTimeField
+from wtforms.fields import SelectMultipleField
+from wtforms.fields.html5 import DateField
+from wtforms import validators
+from wtforms.validators import Optional, InputRequired, ValidationError
+from flask_login import login_user, logout_user
+from flask_login import current_user
+from markupsafe import Markup
+from werkzeug.utils import secure_filename
+from sqlalchemy import or_, and_, func, cast, Integer
+from sqlalchemy.orm import aliased
+from flask_sqlalchemy import orm
+from enum import Enum
+
+from fava.data.model import Rack, Server, Job, Task, User
+from fava.data.model import server_job_table, server_task_table
+from fava.data.model import TestSuite, TestCase, ServerStatus
+from fava.data.model import BootOptions, Configuration
+from fava.io.utils import fava_popen
+from fava.lib.config import FavaConfig
+from fava.lib.core import Fava
+from fava.lib.exceptions import ShopFloorError
+from fava.lib.system.utils import SystemUtils, SharedUtils
+from fava.lib.types import BoMFields
+from fava.test.utils import TestSuiteIterator
+from fava.utils.assets import AssetUtils
+from fava.utils.ziplog import ZipLog
+from fava.utils.favacli_utils import parse_duration
+from fava.thrift.genpy.Tcontroller.ttypes import JobError
+from fava.utils.gatekeeper import GateKeeper, GatekeeperInventory
+import fava.data.model as model
+from fava.lib.permissions import Permissions
+import fava.lib.reservations as reservations
+
+from favagui_setup import config, favadb, favacore, app, login_manager, db
+from favagui_setup import log_dir, _dir_path, binds, render_template
+from favagui_testsuite import testsuite_page, fw_upgrade_test_template
+from favagui_utils import permission_check, reservation_conflict_msg
+app.register_blueprint(testsuite_page)
+
+ALLOWED_EXTENSIONS = ['csv', 'yml', 'yaml', 'json', '', 'txt']
+PER_PAGE = 40
+cache = {}
+last_readiness_check = time.time()
+
+
+@app.route(u'/report/<serial>/<job>/')
+def report(serial, job):
+    tool = SharedUtils.which("device_report.py", silentfail=True)
+    if tool is None:
+        return "Generating device report is not supported"
+
+    args = os.path.join(serial, "J{}T*".format(job))
+    report_basename = "J{}-rep.txt".format(job)
+    report_path = os.path.join(config['FAVA_LOG_DIR'], serial, report_basename)
+    try:
+        with open(report_path, 'w') as report_file:
+            (_, _, err) = fava_popen([tool, args], stdout=report_file)
+        final_url = os.path.join('/logs', serial, report_basename)
+        return err or redirect(final_url)
+    except Exception as e:
+        return "Could not generate report: {}".format(e)
+
+
+@login_manager.user_loader
+def user_loader(user_id):
+    return db.session.query(User).filter(User.id == user_id).first()
+
+
+class RackForm(Form):
+    serial = StringField('serial')
+    location = StringField('location')
+    tla = StringField('tla')
+    submit = SubmitField('Submit')
